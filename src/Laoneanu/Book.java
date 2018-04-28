@@ -26,7 +26,7 @@ public class Book{
         return bookOut;
     }
 
-    public String getClient() {
+    public Client getClient() {
         return client;
     }
 
