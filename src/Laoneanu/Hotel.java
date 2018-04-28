@@ -6,16 +6,17 @@ import java.util.List;
 public class Hotel {
     private String name;
     private String type;
-    private List Rooms = new ArrayList<Room>();
+    private List<Room> rooms;
 
     public Hotel(String name, String type) {
         this.name = name;
         this.type = type;
-        this.Rooms = new ArrayList<Room>();
+        this.rooms = new ArrayList<>();
 
     }
 
     public boolean newBooking(){
+        if()
 
 
     }

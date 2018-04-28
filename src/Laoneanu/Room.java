@@ -4,7 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class Room {
-    private List bookings = new ArrayList<Book>();
+    private List bookings;
     private int roomNumber;
     private String type;
 
