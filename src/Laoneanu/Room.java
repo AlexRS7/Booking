@@ -1,18 +1,20 @@
 package Laoneanu;
 
+import com.sun.org.apache.xpath.internal.SourceTree;
+
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.*;
 
 public class Room {
-    private List bookings;
+    private List<Book> bookings;
     private int roomNumber;
     private String type;
 
     public Room(int roomNumber, String type) {
         this.roomNumber = roomNumber;
         this.type = type;
-        this.bookings = new ArrayList<Book>();
+        this.bookings = new ArrayList<>();
     }
 
     public List getBookings() {
@@ -28,7 +30,7 @@ public class Room {
     }
 
     public void addBooking(Book book) {
-        bookings.add(bookings);
+        bookings.add(book);
     }
 
     public void deleteBooking(Book book) {
@@ -36,23 +38,26 @@ public class Room {
     }
 
     public void modifyBooking(Book book) {
+
         Iterator<Book> i = bookings.iterator();
         Scanner sc = new Scanner(System.in);
-        String nameclient = sc.nextLine();
-        System.out.println("What is the customers name");
-        String datestr1 = sc.nextLine();
-        System.out.println("What is the bookin date");
+        System.out.println("What is the customer's name");
+        String nameClient = sc.nextLine();
+        System.out.println("What is the customer's code?");
+        int code = sc.nextInt();
+        System.out.println("What is the date for the new bookin?");
+        String datestr1 = sc.next();
         SimpleDateFormat format1 = new SimpleDateFormat("yyyy-MM-dd");
         Date bookin = null;
         Date bookout= null;
-
+        System.out.println("test");
         try {
              bookin = format1.parse(datestr1);
         } catch (ParseException e) {
             e.printStackTrace();
         }
-        String datestr2 = sc.nextLine();
-        System.out.println("What is the bookin date");
+        System.out.println("What is the date for the new bookout?");
+        String datestr2 = sc.next();
         SimpleDateFormat format2 = new SimpleDateFormat("yyyy-MM-dd");
         try {
              bookout=format2.parse(datestr2);
@@ -61,13 +66,18 @@ public class Room {
         }
         System.out.println("What is the room number? ");
         int roomNumber=sc.nextInt();
+
+        Client client = new Client(nameClient, code);
+        System.out.println(bookings);;
         while (i.hasNext()){
-            Book testBook=new Book(bookin,bookout,nameclient,roomNumber);
-            if(testBook.equals(book)){
+            Book currentBook = i.next();
+            Book testBook=new Book(bookin,bookout,client,roomNumber);
+            if(currentBook.equals(book)){
                 testBook.setBookIn(book.getBookIn());
                 testBook.setBookOut(book.getBookOut());
                 testBook.setClient(book.getClient());
                 testBook.setRoomNumber(book.getRoomNumber());
+                System.out.println("Booking has been modified successfully!");
             }
         }
     }

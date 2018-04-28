@@ -2,6 +2,7 @@ package Laoneanu;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.ListIterator;
 
 public class Hotel {
     private String name;
@@ -14,10 +15,8 @@ public class Hotel {
         this.rooms = new ArrayList<>();
 
     }
-
-    public boolean newBooking(){
-
-
-        return false;
+    public void addRoom(Room room) {
+        rooms.add(room);
     }
+
 }
