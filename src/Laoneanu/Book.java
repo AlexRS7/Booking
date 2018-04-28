@@ -66,4 +66,7 @@ public class Book{
 
         return Objects.hash(bookIn, bookOut, client, roomNumber);
     }
+
+
+
 }

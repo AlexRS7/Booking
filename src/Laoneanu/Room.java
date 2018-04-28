@@ -17,6 +17,8 @@ public class Room {
         this.bookings = new ArrayList<>();
     }
 
+
+
     public List getBookings() {
         return bookings;
     }
@@ -81,4 +83,18 @@ public class Room {
             }
         }
     }
+
+   public int listBookins(Date date){
+        int i = 0;
+        for(Book x: bookings){
+            if((x.getBookIn().before(date)||x.getBookIn().equals(date))  && ((x.getBookOut().after(date)||x.getBookOut().equals(date)))){
+                System.out.println("Room" + x.getRoomNumber() + " was booked on" + date);
+                i++;
+
+            }
+
+        }
+        return i;
+    }
+
 }

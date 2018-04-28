@@ -1,6 +1,7 @@
 package Laoneanu;
 
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 import java.util.ListIterator;
 
@@ -17,6 +18,14 @@ public class Hotel {
     }
     public void addRoom(Room room) {
         rooms.add(room);
+    }
+
+    public void printRooms(Date date){
+        int j = 0;
+        for(Room x: rooms){
+            j = j + x.listBookins(date);
+        }
+        System.out.println("Number of total bookings is " + j);
     }
 
 }
