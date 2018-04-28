@@ -16,10 +16,8 @@ public class Hotel {
     }
 
     public boolean newBooking(){
-        if(){
-            
-        }
 
 
+        return false;
     }
 }

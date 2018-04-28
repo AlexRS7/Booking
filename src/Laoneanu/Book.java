@@ -34,4 +34,20 @@ public class Book{
     public void addBooking(){
 
     }
+
+    public void setBookIn(Date bookIn) {
+        this.bookIn = bookIn;
+    }
+
+    public void setBookOut(Date bookOut) {
+        this.bookOut = bookOut;
+    }
+
+    public void setClient(String client) {
+        this.client = client;
+    }
+
+    public void setRoomNumber(int roomNumber) {
+        this.roomNumber = roomNumber;
+    }
 }
