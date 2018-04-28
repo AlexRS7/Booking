@@ -30,4 +30,8 @@ public class Book{
     public int getRoomNumber() {
         return roomNumber;
     }
+
+    public void addBooking(){
+
+    }
 }
