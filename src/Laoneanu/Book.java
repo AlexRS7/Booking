@@ -1,14 +1,17 @@
 package Laoneanu;
 
+import com.sun.deploy.util.SessionState;
+import com.sun.security.ntlm.Client;
+
 import java.util.Date;
 
 public class Book{
     private Date bookIn;
     private Date bookOut;
-    private String client;
+    private Client client;
     private int roomNumber;
 
-    public Book(Date bookIn, Date bookOut, String client, int roomNumber) {
+    public Book(Date bookIn, Date bookOut, Client client, int roomNumber) {
         this.bookIn = bookIn;
         this.bookOut = bookOut;
         this.client = client;
@@ -43,11 +46,11 @@ public class Book{
         this.bookOut = bookOut;
     }
 
-    public void setClient(String client) {
-        this.client = client;
-    }
-
     public void setRoomNumber(int roomNumber) {
         this.roomNumber = roomNumber;
+    }
+
+    public void setClient(Client client) {
+        this.client = client;
     }
 }
