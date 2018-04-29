@@ -1,5 +1,7 @@
 package Laoneanu;
 
+import com.sun.org.apache.xpath.internal.SourceTree;
+
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
@@ -17,7 +19,14 @@ public class Hotel {
 
     }
     public void addRoom(Room room) {
+        for (Room x: rooms){
+            if (x.equals(room)){
+                System.out.println("Room already exists.");
+                return;
+            }
+        }
         rooms.add(room);
+
     }
 
     public void printRooms(Date date){
@@ -26,6 +35,14 @@ public class Hotel {
             j = j + x.listBookins(date);
         }
         System.out.println("Number of total bookings is " + j);
+    }
+
+    public void printRooms(Client clientboss){
+        int j = 0;
+        for(Room x: rooms){
+            j = j + x.listBookins(clientboss);
+        }
+        System.out.println("Number of total bookings by " + clientboss.getName() + " is " + j);
     }
 
 }

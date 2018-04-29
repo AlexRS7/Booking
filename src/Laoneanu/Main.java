@@ -27,6 +27,7 @@ public class Main {
 		Book book4 = new Book(new Date(2018,03,04),new Date(2018,3,24),client1,4);
 		Book book5 = new Book(new Date(2018,03,04),new Date(2018,3,24),client1,5);
 		Book book6 = new Book(new Date(2018,03,04),new Date(2018,3,24),client1,6);
+		Book book7 = new Book(new Date(2018,03,04),new Date(2018,3,24),client1,6);
 
 	    room1.addBooking(book1);
 	    room2.addBooking(book2);
@@ -34,8 +35,16 @@ public class Main {
 	    room4.addBooking(book4);
 	    room5.addBooking(book5);
 	    room6.addBooking(book6);
-	    //room1.modifyBooking(book1);
-	    hotel.printRooms(book1.getBookIn());
-    }
+	    room6.addBooking(book7);
 
+	    book1.setClient(client1);
+		book2.setClient(client1);
+		book3.setClient(client1);
+		book4.setClient(client1);
+		book5.setClient(client1);
+		book6.setClient(client1);
+		//room1.modifyBooking(book1);
+	   // hotel.printRooms(book1.getBookIn());
+		hotel.printRooms(client1);
+    }
 }

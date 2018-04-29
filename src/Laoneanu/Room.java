@@ -17,7 +17,19 @@ public class Room {
         this.bookings = new ArrayList<>();
     }
 
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Room room = (Room) o;
+        return roomNumber == room.roomNumber && Objects.equals(type, room.type);
+    }
 
+    @Override
+    public int hashCode() {
+
+        return Objects.hash(roomNumber, type);
+    }
 
     public List getBookings() {
         return bookings;
@@ -31,12 +43,30 @@ public class Room {
         return type;
     }
 
+    public boolean inConflict(Book book){
+        for(Book x: bookings){
+            Boolean test1 = (book.getBookIn().after(x.getBookIn()) || book.getBookIn().equals(x.getBookIn())) &&
+                    (book.getBookIn().after(x.getBookOut()) || book.getBookIn().equals(x.getBookOut()));
+            Boolean test2 = (book.getBookOut().after(x.getBookIn())||book.getBookOut().equals(x.getBookIn())) &&
+                    (book.getBookOut().before(x.getBookOut())|| book.getBookOut().equals(x.getBookOut()));
+            Boolean test3 = (book.getBookIn().before(x.getBookIn()))|| book.getBookOut().after(x.getBookOut());
+            if(test1 || test2 || test3) {
+               return true;
+            }
+        }
+        return false;
+    }
+
+
     public void addBooking(Book book) {
+        if(inConflict(book)){
+            return;
+        }
         bookings.add(book);
     }
 
     public void deleteBooking(Book book) {
-        bookings.remove(bookings);
+        bookings.remove(book);
     }
 
     public void modifyBooking(Book book) {
@@ -68,19 +98,17 @@ public class Room {
         }
         System.out.println("What is the room number? ");
         int roomNumber=sc.nextInt();
-
         Client client = new Client(nameClient, code);
-        System.out.println(bookings);;
-        while (i.hasNext()){
-            Book currentBook = i.next();
-            Book testBook=new Book(bookin,bookout,client,roomNumber);
-            if(currentBook.equals(book)){
-                testBook.setBookIn(book.getBookIn());
-                testBook.setBookOut(book.getBookOut());
-                testBook.setClient(book.getClient());
-                testBook.setRoomNumber(book.getRoomNumber());
-                System.out.println("Booking has been modified successfully!");
-            }
+        Book testBook=new Book(bookin,bookout,client,roomNumber);
+        bookings.remove(book);
+        if(inConflict(testBook)){
+            System.out.println("Bookin overlaps another bookin, bookin can't be made!");
+            bookings.add(book);
+            return;
+        }
+        else
+        {
+            bookings.add(testBook);
         }
     }
 
@@ -96,5 +124,20 @@ public class Room {
         }
         return i;
     }
+
+    public int listBookins(Client client){
+        int i = 0;
+        for(Book x: bookings){
+            if(x.getClient().equals(client)){
+                System.out.println("Room" + x.getRoomNumber() + " was booked by " + client);
+                i++;
+
+            }
+
+        }
+        return i;
+    }
+
+
 
 }
